@@ -1,0 +1,31 @@
+{
+  "name": "clon-netflix-backend",
+  "version": "1.0.0",
+  "description": "clon de netflix",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luis Soto",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sot0/API-clon-netflix.git"
+  },
+  "keywords": [
+    "clon",
+    "netflix",
+    "backend",
+    "graphql",
+    "cinta-negra",
+    "devf"
+  ],
+  "bugs": {
+    "url": "https://github.com/Sot0/API-clon-netflix/issues"
+  },
+  "homepage": "https://github.com/Sot0/API-clon-netflix#readme",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3"
+  }
+}
