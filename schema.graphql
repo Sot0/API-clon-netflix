@@ -1,0 +1,62 @@
+type Query {
+    getUsers: [User]!
+    getUserById: User!
+}
+
+type Mutation {
+    createUser(data: UserCreateInput!): User!
+}
+
+type User {
+    _id: ID!,
+    first_name: String!
+    last_name: String!
+    email: String!
+    birth_date: String!
+    gender: GENDERS
+    profile_pic: String!
+    comments: [Comment]!
+    is_active: Boolean!
+}
+
+type Movie {
+    _id: ID!
+    title: String!
+    author: String!
+    video: String!
+    cover: String!
+}
+
+type Comment {
+    user: User!
+    movie: Movie!
+    text: String!
+}
+
+enum GENDERS {
+    M
+    F
+}
+
+input UserCreateInput {
+    first_name: String!
+    last_name: String!
+    email: String!
+    birth_date: String!
+    gender: GENDERS!
+    profile_pic: String
+    is_active: Boolean
+}
+
+input MovieCreateInput {
+    title: String!
+    author: String!
+    video: String!
+    cover: String!
+}
+
+input CommentCreateInput {
+    user: ID!
+    movie: ID!
+    text: String!
+}
