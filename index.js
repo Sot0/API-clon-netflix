@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGO_URL, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
-	useUnifiedTopology: true,
+	useUnifiedTopology: true
 });
 
 const mongo = mongoose.connection;
