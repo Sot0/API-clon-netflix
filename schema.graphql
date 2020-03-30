@@ -1,12 +1,18 @@
 type Query {
     getUsers: [User]!
     getUserById(id: ID!): User!
+    getMovies: [Movie]!
+    getMovieById(id: ID!): Movie!
 }
 
 type Mutation {
     createUser(data: UserCreateInput!): User!
     updateUser(id: ID!, data: UserUpdateInput!): User!
     deleteUser(id: ID!): User!
+    createMovie(data: MovieCreateInput!): Movie!
+    updateMovie(id: ID!, data: MovieUpdateInput!): Movie!
+    deleteMovie(id: ID!): Movie!
+    createCommentonByMovieId(id:ID!, data: CommentCreateInput!): Movie!
 }
 
 type User {
@@ -25,9 +31,11 @@ type Movie {
     _id: ID!
     title: String!
     author: String!
+    description: String!
     video: String!
     cover: String!
     comments: [Comment]!
+    is_active: Boolean!
 }
 
 type Comment {
@@ -64,20 +72,23 @@ input UserUpdateInput {
 input MovieCreateInput {
     title: String!
     author: String!
+    description: String!
     video: String!
     cover: String!
+    is_active: Boolean!
 }
 
 input MovieUpdateInput {
     title: String
     author: String
+    description: String
     video: String
     cover: String
-    comments: [Comment]
+    comments: [CommentCreateInput]
+    is_active: Boolean
 }
 
 input CommentCreateInput {
     user: ID!
-    movie: ID!
     text: String!
 }
