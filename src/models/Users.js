@@ -26,9 +26,9 @@ const UserSchema = new Schema({
 		required: true
 	},
 	profile_pic: String,
-	comments: {
+	favorites: {
 		type: [Schema.Types.ObjectId],
-		ref:'comments'
+		ref:'movies'
 	},
 	is_active: {
 		type: Boolean,
