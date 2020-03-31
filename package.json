@@ -27,6 +27,7 @@
   "homepage": "https://github.com/Sot0/API-clon-netflix#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
+    "graphql-scalars": "^1.0.9",
     "graphql-yoga": "^1.18.3",
     "mongoose": "^5.9.6"
   },

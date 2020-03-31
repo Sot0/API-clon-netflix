@@ -1,3 +1,6 @@
+scalar EmailAdd
+scalar URL
+
 type Query {
     getUsers: [User]!
     getUserById(id: ID!): User!
@@ -8,10 +11,10 @@ type Query {
 type Mutation {
     createUser(data: UserCreateInput!): User!
     updateUser(id: ID!, data: UserUpdateInput!): User!
-    deleteUser(id: ID!): User!
+    deleteUser(id: ID!): String!
     createMovie(data: MovieCreateInput!): Movie!
     updateMovie(id: ID!, data: MovieUpdateInput!): Movie!
-    deleteMovie(id: ID!): Movie!
+    deleteMovie(id: ID!): String!
     createCommentonByMovieId(id:ID!, data: CommentCreateInput!): Movie!
 }
 
@@ -19,10 +22,10 @@ type User {
     _id: ID!,
     first_name: String!
     last_name: String!
-    email: String!
+    email: EmailAdd!
     birth_date: String!
     gender: GENDERS
-    profile_pic: String!
+    profile_pic: URL!
     favorites: [Movie]!
     is_active: Boolean!
 }
@@ -32,8 +35,8 @@ type Movie {
     title: String!
     author: String!
     description: String!
-    video: String!
-    cover: String!
+    video: URL!
+    cover: URL!
     comments: [Comment]!
     is_active: Boolean!
 }
@@ -51,20 +54,20 @@ enum GENDERS {
 input UserCreateInput {
     first_name: String!
     last_name: String!
-    email: String!
+    email: EmailAdd!
     birth_date: String!
     gender: GENDERS!
-    profile_pic: String
+    profile_pic: URL
     is_active: Boolean
 }
 
 input UserUpdateInput {
     first_name: String
     last_name: String
-    email: String
+    email: EmailAdd
     birth_date: String
     gender: GENDERS
-    profile_pic: String
+    profile_pic: URL
     favorites: [ID]
     is_active: Boolean
 }
@@ -73,8 +76,8 @@ input MovieCreateInput {
     title: String!
     author: String!
     description: String!
-    video: String!
-    cover: String!
+    video: URL!
+    cover: URL!
     is_active: Boolean!
 }
 
@@ -82,8 +85,8 @@ input MovieUpdateInput {
     title: String
     author: String
     description: String
-    video: String
-    cover: String
+    video: URL
+    cover: URL
     comments: [CommentCreateInput]
     is_active: Boolean
 }

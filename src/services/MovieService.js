@@ -15,7 +15,10 @@ const createOneMovie = (data) => Movie.create(data);
 const updateMovieById = (id, data) => Movie.findByIdAndUpdate({
 	_id: id,
 	is_active: true
-}, { ...data }, { new: true });
+}, { ...data }, { new: true }).populate({
+	path: 'comments.user',
+	model: 'users'
+});
 
 const deleteMovieById = (id) => Movie.findByIdAndUpdate({ _id: id, is_active: true }, { is_active: false }, { new: true });
 

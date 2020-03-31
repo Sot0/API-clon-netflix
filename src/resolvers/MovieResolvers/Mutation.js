@@ -22,7 +22,8 @@ const updateMovie = async (_, {id, data}) => {
 
 const deleteMovie = async (_, {id}) => {
 	const movie = await deleteMovieById(id);
-	return movie;
+	if (!movie) return 'Movie does not exists';
+	return 'Movie deleted';
 };
 
 module.exports = {
