@@ -1,12 +1,33 @@
 const { createOneUser, updateUserById, deleteUserById } = require('../../services/UserService');
+const storage = require('../../utils/storage');
 const authenticate = require('../../utils/authenticate');
 
 const createUser = async (_, {data}) => {
+	// save pincture on cloudinary
+	if(data.profile_pic) {
+		const { createReadStream } = await data.profile_pic;
+		const stream = createReadStream();
+		const storageInfo = await storage({stream});
+		data = {
+			...data,
+			profile_pic: storageInfo.url
+		};
+	}
+
 	const user = await createOneUser(data);
 	return user;
 };
 
 const updateUser = async (_, {data}, { userAuth }) => {
+	if(data.profile_pic) {
+		const { createReadStream } = await data.profile_pic;
+		const stream = createReadStream();
+		const storageInfo = await storage({stream});
+		data = {
+			...data,
+			profile_pic: storageInfo.url
+		};
+	}
 	const user = await updateUserById(userAuth._id, data);
 	return user;
 };

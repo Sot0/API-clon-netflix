@@ -1,13 +1,13 @@
 const jwt = require('jsonwebtoken');
 const { getUserByEmail } = require('../services/UserService');
 
-const verifytoken = async request => {
+const verifyToken = async request => {
 	try {
 		const Authorization = request.get('Authorization');
 		if(Authorization) {
 			// JWT header.payload.signature
-			const formattedToken =  Authorization.replace('JWT ', '');
-			const payload = jwt.verify(formattedToken, process.env.SECRET_KEY_JWT);
+			const formatedToken =  Authorization.replace('JWT ', '');
+			const payload = jwt.verify(formatedToken, process.env.SECRET_KEY_JWT);
 			if(!payload) return request;
 			const userAuth = await getUserByEmail(payload.email);
 			if(!userAuth) return request;
@@ -20,4 +20,4 @@ const verifytoken = async request => {
 	}
 };
 
-module.exports = verifytoken;
+module.exports = verifyToken;

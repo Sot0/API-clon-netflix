@@ -6,7 +6,7 @@ class AuthDirective extends SchemaDirectiveVisitor {
 		const { resolve = defaultFieldResolver } = field;
 		field.resolve = async function(...args) {
 			const [,,context] = args;
-			if(context.user) {
+			if(context.userAuth._id) {
 				return await resolve.apply(this, args);
 			} else {
 				throw new Error('You must be authenticated');

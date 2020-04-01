@@ -1,11 +1,9 @@
 const jwt = require('jsonwebtoken');
-
 /**
  * header
  * payload
  * signature
  */
-
 // parámetros con datos de uso frecuente
 const createToken = ({ email, first_name }) => {
 	const payload = {
