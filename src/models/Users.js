@@ -46,8 +46,8 @@ UserSchema.pre('save', function(next) {
 	const user = this;
 	const SALT_FACTOR = 10;
 	if(!user.isModified('password')) return next();
-	bcrypt.genSalt(SALT_FACTOR, function(error, salt){
-		if(!error) return next(error);
+	bcrypt.genSalt(SALT_FACTOR, function(error, salt) {
+		if(error) return next(error);
 		bcrypt.hash(user.password, salt, function(error, hash){
 			if(error) return next(error);
 			user.password = hash;

@@ -1,5 +1,5 @@
 const { createOneMovie, updateMovieById, deleteMovieById } = require('../../services/MovieService');
-const { getOneMovie } = require('../../services/MovieService');
+const { getOneMovieById } = require('../../services/MovieService');
 const storage = require('../../utils/storage');
 
 const createMovie = async (_, {data}) => {
@@ -18,7 +18,7 @@ const createMovie = async (_, {data}) => {
 };
 
 const createCommentonByMovieId = async (_, {id, data}) => {
-	const movie = await getOneMovie(id);
+	const movie = await getOneMovieById(id);
 	if(movie) {
 		movie.comments.push(data);
 		movie.save();

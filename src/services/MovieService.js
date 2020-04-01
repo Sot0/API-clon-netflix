@@ -5,7 +5,7 @@ const getAllMovies = () => Movie.find({ is_active: true }).populate({
 	model: 'users'
 });
 
-const getOneMovie = id => Movie.findById({ _id: id, is_active: true }).populate({
+const getOneMovieById = id => Movie.findById({ _id: id, is_active: true }).populate({
 	path: 'comments.user',
 	model: 'users'
 });
@@ -24,7 +24,7 @@ const deleteMovieById = (id) => Movie.findByIdAndUpdate({ _id: id, is_active: tr
 
 module.exports= {
 	getAllMovies,
-	getOneMovie,
+	getOneMovieById,
 	createOneMovie,
 	updateMovieById,
 	deleteMovieById

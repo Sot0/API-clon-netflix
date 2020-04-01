@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { getUserByEmail } = require('../services/UserService');
+const { getOneUserByEmail } = require('../services/UserService');
 
 const verifyToken = async request => {
 	try {
@@ -9,7 +9,7 @@ const verifyToken = async request => {
 			const formatedToken =  Authorization.replace('JWT ', '');
 			const payload = jwt.verify(formatedToken, process.env.SECRET_KEY_JWT);
 			if(!payload) return request;
-			const userAuth = await getUserByEmail(payload.email);
+			const userAuth = await getOneUserByEmail(payload.email);
 			if(!userAuth) return request;
 			return userAuth;
 		} else {

@@ -1,4 +1,4 @@
-const { getAllMovies, getOneMovie } = require('../../services/MovieService');
+const { getAllMovies, getOneMovieById } = require('../../services/MovieService');
 
 const getMovies = async () => {
 	const movie = await getAllMovies();
@@ -6,7 +6,7 @@ const getMovies = async () => {
 };
 
 const getMovieById = async (_, {id}) => {
-	const movie = await getOneMovie(id);
+	const movie = await getOneMovieById(id);
 	return movie;
 };
 
