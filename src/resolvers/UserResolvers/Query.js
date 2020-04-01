@@ -1,4 +1,4 @@
-const { getAllUsers, getOneUser } = require('../../services/UserService');
+const { getAllUsers, getOneUserById } = require('../../services/UserService');
 
 const getUsers = async () => {
 	const users = await getAllUsers();
@@ -6,7 +6,7 @@ const getUsers = async () => {
 };
 
 const getUserById = async (_, {id}) => {
-	const user = await getOneUser(id);
+	const user = await getOneUserById(id);
 	return user;
 };
 

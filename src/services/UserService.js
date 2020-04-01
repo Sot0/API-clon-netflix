@@ -2,7 +2,9 @@ const Users = require('../models/Users');
 
 const getAllUsers = () => Users.find({ is_active: true });
 
-const getOneUser = id => Users.findById({ _id: id, is_active: true });
+const getOneUserById = id => Users.findById({ _id: id, is_active: true });
+
+const getOneUserByEmail = email => Users.findOne({ email: email, is_active: true });
 
 const createOneUser = data => Users.create(data);
 
@@ -15,7 +17,8 @@ const deleteUserById = (id) => Users.findByIdAndUpdate({_id: id, is_active: true
 
 module.exports = {
 	getAllUsers,
-	getOneUser,
+	getOneUserById,
+	getOneUserByEmail,
 	createOneUser,
 	updateUserById,
 	deleteUserById

@@ -23,6 +23,11 @@ const MovieSchema = new Schema({
 		type: String,
 		required: true
 	},
+	categories: {
+		type: [String],
+		required: true,
+		enum: ['accion', 'anime', 'aventura', 'comedia', 'magia', 'mexicana', 'terror']
+	},
 	comments: {
 		type: [{
 			user: {
