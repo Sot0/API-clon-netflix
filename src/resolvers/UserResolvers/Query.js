@@ -10,7 +10,13 @@ const getUserById = async (_, {id}) => {
 	return user;
 };
 
+const me = async (_, __, {userAuth}) => {
+	const author = await getOneUserById(userAuth._id);
+	return author;
+}
+
 module.exports = {
 	getUsers,
-	getUserById
+	getUserById,
+	me
 };

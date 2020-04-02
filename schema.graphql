@@ -1,5 +1,6 @@
 scalar EmailAdd
 scalar URL
+scalar Upload
 
 directive @auth on FIELD_DEFINITION | FIELD
 
@@ -8,6 +9,7 @@ type Query {
     getUserById(id: ID!): User!
     getMovies: [Movie]!
     getMovieById(id: ID!): Movie!
+    me: User!
 }
 
 type Mutation {
@@ -17,7 +19,7 @@ type Mutation {
     createMovie(data: MovieCreateInput!): Movie! @auth
     updateMovie(id: ID!, data: MovieUpdateInput!): Movie! @auth
     deleteMovie(id: ID!): String! @auth
-    createCommentonByMovieId(id:ID!, data: CommentCreateInput!): Movie! @auth
+    createCommentOnByMovieId(id:ID!, data: CommentCreateInput!): Movie! @auth
     login(email: EmailAdd!, password: String!): Auth!
 }
 
@@ -34,7 +36,7 @@ type User {
     password: String!
     birth_date: String!
     gender: GENDERS!
-    profile_pic: URL!
+    profile_pic: URL
     favorites: [Movie]!
     is_active: Boolean!
 }
@@ -78,7 +80,7 @@ input UserCreateInput {
     password: String!
     birth_date: String!
     gender: GENDERS!
-    profile_pic: URL
+    profile_pic: Upload
     is_active: Boolean
 }
 
@@ -89,7 +91,7 @@ input UserUpdateInput {
     password: String
     birth_date: String
     gender: GENDERS
-    profile_pic: URL
+    profile_pic: Upload
     favorites: [ID]
     is_active: Boolean
 }
@@ -98,20 +100,18 @@ input MovieCreateInput {
     title: String!
     author: String!
     description: String!
-    video: URL!
-    cover: URL!
+    video: Upload!
+    cover: Upload!
     categories: [CATEGORIES]!
-    is_active: Boolean!
 }
 
 input MovieUpdateInput {
     title: String
     author: String
     description: String
-    video: URL
-    cover: URL
+    video: Upload
+    cover: Upload
     categories: [CATEGORIES]!
-    comments: [CommentCreateInput]
     is_active: Boolean
 }
 
