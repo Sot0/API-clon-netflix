@@ -16,11 +16,12 @@ type Mutation {
     createUser(data: UserCreateInput!): User!
     updateUser(data: UserUpdateInput!): User! @auth
     deleteUser: String! @auth
+    updateFavoriteMovie(id: ID!, operation: Boolean!): String! @auth
+    login(email: EmailAdd!, password: String!): Auth!
     createMovie(data: MovieCreateInput!): Movie! @auth
     updateMovie(id: ID!, data: MovieUpdateInput!): Movie! @auth
     deleteMovie(id: ID!): String! @auth
-    createCommentOnByMovieId(id:ID!, data: CommentCreateInput!): Movie! @auth
-    login(email: EmailAdd!, password: String!): Auth!
+    createCommentOnByMovieId(id:ID!, message: String!): Movie! @auth
 }
 
 type Auth {
@@ -113,9 +114,4 @@ input MovieUpdateInput {
     cover: Upload
     categories: [CATEGORIES]!
     is_active: Boolean
-}
-
-input CommentCreateInput {
-    user: ID!
-    text: String!
 }

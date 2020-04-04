@@ -13,7 +13,7 @@ const getUserById = async (_, {id}) => {
 const me = async (_, __, {userAuth}) => {
 	const author = await getOneUserById(userAuth._id);
 	return author;
-}
+};
 
 module.exports = {
 	getUsers,

@@ -26,10 +26,13 @@ const createMovie = async (_, {data}) => {
 	return movie;
 };
 
-const createCommentOnByMovieId = async (_, {id, data}) => {
+const createCommentOnByMovieId = async (_, {id, message}, {userAuth}) => {
 	const movie = await getOneMovieById(id);
 	if(movie) {
-		movie.comments.push(data);
+		movie.comments.push({
+			user: userAuth._id,
+			text: message
+		});
 		movie.save();
 	}
 	return movie;

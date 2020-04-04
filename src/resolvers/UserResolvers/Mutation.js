@@ -1,4 +1,5 @@
 const { createOneUser, updateUserById, deleteUserById } = require('../../services/UserService');
+const { getOneMovieById } = require('../../services/MovieService');
 const storage = require('../../utils/storage');
 const authenticate = require('../../utils/authenticate');
 
@@ -47,9 +48,25 @@ const login = async (_, params) => {
 	};
 };
 
+const updateFavoriteMovie = async (_, {id, operation}, {userAuth}) => {
+	const movie = await getOneMovieById(id);
+	if (!movie) return 'Movie does not exists';
+	if (operation) {
+		userAuth.favorites.push(id);
+		userAuth.save();
+		return 'Movie add to favorites';
+	} else if (!operation) {
+		const index = userAuth.favorites.findIndex(movie => movie._id == id);
+		userAuth.favorites.splice(index,1);
+		userAuth.save();
+		return 'Movie deleted';
+	}
+};
+
 module.exports = {
 	createUser,
 	updateUser,
 	deleteUser,
-	login
+	login,
+	updateFavoriteMovie
 };
