@@ -5,10 +5,15 @@ const { makeExecutableSchema } = require('graphql-tools');
 const verifyToken = require('./src/utils/verifyToken');
 const AuthDirective = require('./src/resolvers/Directives/AuthResolver');
 const resolvers = require('./src/resolvers');
+// const { getMongoUrl } = require('./src/utils/utils');
 
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL, {
+const uri =  process.env.NODE_ENV === 'TEST'
+	? process.env.MONGO_URL_TEST
+	: process.env.MONGO_URL_DEVELOP;
+
+mongoose.connect(uri, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true
@@ -42,3 +47,5 @@ const server = new GraphQLServer({
 const port = 4000 || process.env.PORT;
 
 server.start({port}, () => console.log(`Servidor arriba en puerto ${port}`));
+
+module.exports = { schema };
