@@ -7,7 +7,7 @@ const MovieSchema = new Schema({
 		type: String,
 		required: true
 	},
-	author: {
+	created_by: {
 		type: String,
 		required: true
 	},
@@ -26,7 +26,7 @@ const MovieSchema = new Schema({
 	categories: {
 		type: [String],
 		required: true,
-		enum: ['accion', 'anime', 'aventura', 'comedia', 'magia', 'mexicana', 'terror']
+		enum: ['accion', 'anime', 'aventura', 'comedia', 'magia', 'mexicana', 'terror', 'romance', 'fantasia', 'guerra', 'animacion', 'suspenso']
 	},
 	comments: {
 		type: [{
