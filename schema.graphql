@@ -10,6 +10,7 @@ type Query {
     getMovies: [Movie]!
     getMovieById(id: ID!): Movie!
     me: User!
+    # verifiToken(token: String): Auth!
 }
 
 type Mutation {
@@ -21,7 +22,7 @@ type Mutation {
     createMovie(data: MovieCreateInput!): Movie! @auth
     updateMovie(id: ID!, data: MovieUpdateInput!): Movie! @auth
     deleteMovie(id: ID!): String! @auth
-    createCommentOnByMovieId(id:ID!, message: String!): Movie! @auth
+    createCommentOnByMovieId(data: CommentInput!): Movie! @auth
 }
 
 type Auth {
@@ -87,7 +88,6 @@ input UserCreateInput {
     birth_date: String!
     gender: GENDERS!
     profile_pic: Upload
-    is_active: Boolean
 }
 
 input UserUpdateInput {
@@ -119,4 +119,9 @@ input MovieUpdateInput {
     cover: Upload
     categories: [CATEGORIES]!
     is_active: Boolean
+}
+
+input CommentInput {
+    id_movie: ID!
+    message: String!
 }
